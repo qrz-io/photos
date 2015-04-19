@@ -1,5 +1,5 @@
 <?php
-namespace Photos;
+namespace Photos\Model;
 
 class Compile
 {
