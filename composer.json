@@ -1,0 +1,23 @@
+{
+    "name": "qrz-io/photos",
+    "description": "Simple script to publish a minimal photography site.",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5",
+        "symfony/yaml": "~2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Photos": "code"
+        }
+    },
+    "authors": [
+        {
+            "name": "Cristian Quiroz",
+            "email": "cris@qrz.io"
+        }
+    ]
+}
