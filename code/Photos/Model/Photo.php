@@ -73,7 +73,7 @@ class Photo
      * @return array
      * @author Cristian Quiroz <cris@qrz.io>
      */
-    public function readData($pathToPhoto)
+    public function getData($pathToPhoto)
     {
         if (!is_file($pathToPhoto)) {
             return array();
