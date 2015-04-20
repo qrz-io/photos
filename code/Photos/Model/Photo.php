@@ -96,6 +96,10 @@ class Photo
         $pathToThumb =  $thumbDirectory . pathinfo($pathToPhoto, PATHINFO_BASENAME);
 
         if (!file_exists($pathToThumb)) {
+            if (!is_dir($thumbDirectory)) {
+                mkdir($thumbDirectory, 0777, true);
+            }
+
             $this->resizeImage($pathToPhoto, $pathToThumb);
         }
 
