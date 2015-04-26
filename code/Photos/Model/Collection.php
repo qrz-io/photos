@@ -14,6 +14,19 @@ class Collection
     public function getData($pathToCollection)
     {
         $pathToCollection = trim($pathToCollection, '/');
+        $data = array();
+        $data = array_merge($data, $this->getCollectionData($pathToCollection));
+
+        return $data;
+    }
+
+    /**
+     * @param string $pathToCollection
+     * @return array
+     * @author Cristian Quiroz <cris@qrz.io>
+     */
+    public function getCollectionData($pathToCollection)
+    {
         $data = $this->parseConfig($pathToCollection);
         $photoModel = $this->getPhotoModel();
 
