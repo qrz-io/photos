@@ -26,7 +26,7 @@ class Photos
                 continue;
             }
 
-            $data[] = $photoModel->getData($file);
+            $data[] = $photoModel->getData($pathToCollection . '/' . $file);
         }
 
         return $data;

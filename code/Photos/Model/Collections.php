@@ -15,6 +15,7 @@ class Collections
         $path = 'collections';
         $results = scandir($path);
         $collectionModel = $this->getCollectionModel();
+        $photosModel = $this->getPhotosModel();
         $collectionsData = array();
 
         foreach ($results as $result) {
@@ -22,12 +23,21 @@ class Collections
                 continue;
             }
 
-            $collectionsData[$result] = $collectionModel->getData($path . '/' . $result);
+            $collectionsData[$path . '/' . $result] = $collectionModel->getData($path . '/' . $result);
+            $collectionsData[$path . '/' . $result]['photos'] = $photosModel->getCollectionPhotos($path . '/' . $result);
         }
 
         return $collectionsData;
     }
 
+    /**
+     * @return \Photos\Model\Photos
+     * @author Cristian Quiroz <cris@qrz.io>
+     */
+    public function getPhotosModel()
+    {
+        return new Photos();
+    }
     /**
      * @return \Photos\Model\Collection
      * @author Cristian Quiroz <cris@qrz.io>
