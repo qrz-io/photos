@@ -47,20 +47,10 @@ class Compile
         $collections = $this->getCollectionsModel()->getCollections();
 
         foreach ($collections as $pathToCollection => $collectionData) {
-            $collectionsRenderer->setRenderDestination(
-                $this->getRootDir() . $this->prepareName($collectionData['title']) . '.html'
-            );
+            $collectionsRenderer->setRenderDestination($this->getRootDir() . $collectionData['url-key'] . '.html');
             $collectionsRenderer->setCollectionData($collectionData);
             $collectionsRenderer->render();
         }
-    }
-
-    public function prepareName($name)
-    {
-        $name = preg_replace("/[^A-Za-z0-9]/", "-", $name);
-        $name = strtolower($name);
-
-        return $name;
     }
 
     /**

@@ -42,7 +42,25 @@ class Collection
             }
         }
 
+        if (array_key_exists('title', $data)) {
+            $data['url-key'] = $this->getUrkKey($data['title']);
+        }
+
         return $data;
+    }
+
+    /**
+     * @param $name
+     * @return mixed|string
+     * @author Cristian Quiroz <cris@qrz.io>
+     */
+    public function getUrkKey($name)
+    {
+        $name = preg_replace("/[^A-Za-z0-9 ]/", "", $name);
+        $name = str_replace(' ', '-', $name);
+        $name = strtolower($name);
+
+        return $name;
     }
 
     /**
@@ -52,7 +70,7 @@ class Collection
      */
     public function parseConfig($pathToCollection)
     {
-        $pathToConfig = $pathToCollection . '/collection.yaml';
+        $pathToConfig = $pathToCollection . '/.collection.yml';
         if (!is_file($pathToConfig)) {
             return array();
         }
