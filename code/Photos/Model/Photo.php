@@ -93,7 +93,7 @@ class Photo
     public function getPathToThumbnail($pathToPhoto)
     {
         $thumbDirectory = pathinfo($pathToPhoto, PATHINFO_DIRNAME) . '/.thumb/';
-        $pathToThumb =  $thumbDirectory . pathinfo($pathToPhoto, PATHINFO_BASENAME);
+        $pathToThumb = $thumbDirectory . pathinfo($pathToPhoto, PATHINFO_BASENAME);
 
         if (!file_exists($pathToThumb)) {
             if (!is_dir($thumbDirectory)) {

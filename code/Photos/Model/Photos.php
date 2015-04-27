@@ -22,7 +22,7 @@ class Photos
         $photoModel = $this->getPhotoModel();
 
         foreach ($files as $file) {
-            if (!$this->isPhoto($file)){
+            if (!$this->isPhoto($file)) {
                 continue;
             }
 
