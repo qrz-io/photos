@@ -29,7 +29,7 @@ class Collection
     {
         $data = $this->parseConfig($pathToCollection);
 
-        // if we don't have an array, fail gracefully
+        // no array, fail gracefully
         if (!is_array($data)) {
             return array();
         }
