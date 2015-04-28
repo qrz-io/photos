@@ -13,7 +13,7 @@ class Collection
      */
     public function getData($pathToCollection)
     {
-        $pathToCollection = trim($pathToCollection, '/');
+        $pathToCollection = rtrim($pathToCollection, '/') . '/';
         $data = array();
         $data = array_merge($data, $this->getCollectionData($pathToCollection));
 
@@ -38,12 +38,12 @@ class Collection
 
         foreach ($data as $key => $value) {
             if (strrpos($key, 'img-', -strlen($key)) !== false) {
-                $data[$key] = $photoModel->getPathToThumbnail($pathToCollection . '/' . $data[$key]);
+                $data[$key] = $photoModel->getPathToThumbnail($pathToCollection . $data[$key]);
             }
         }
 
         if (array_key_exists('title', $data)) {
-            $data['url-key'] = $this->getUrkKey($data['title']);
+            $data['url-key'] = $this->getUrlKey($data['title']);
         }
 
         return $data;
@@ -54,7 +54,7 @@ class Collection
      * @return mixed|string
      * @author Cristian Quiroz <cris@qrz.io>
      */
-    public function getUrkKey($name)
+    public function getUrlKey($name)
     {
         $name = preg_replace("/[^A-Za-z0-9 ]/", "", $name);
         $name = str_replace(' ', '-', $name);
@@ -70,7 +70,7 @@ class Collection
      */
     public function parseConfig($pathToCollection)
     {
-        $pathToConfig = $pathToCollection . '/.collection.yml';
+        $pathToConfig = $pathToCollection . '.collection.yml';
         if (!is_file($pathToConfig)) {
             return array();
         }
