@@ -79,12 +79,22 @@ class Photo
             return array();
         }
 
-        $photoData = exif_read_data($pathToPhoto);
+        $photoData = $this->getExifHeaders($pathToPhoto);
         $photoData['Thumbnail'] = $this->getPathToThumbnail($pathToPhoto);
         $photoData['BigImage'] = $this->getPathToBigImage($pathToPhoto);
         $photoData['RealImage'] = $pathToPhoto;
 
         return $photoData;
+    }
+
+    /**
+     * @param string $pathToPhoto
+     * @return array
+     * @author Cristian Quiroz <cris@qrz.io>
+     */
+    public function getExifHeaders($pathToPhoto)
+    {
+        return exif_read_data($pathToPhoto);
     }
 
     /**

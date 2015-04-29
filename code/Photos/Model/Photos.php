@@ -4,6 +4,7 @@ namespace Photos\Model;
 class Photos
 {
 
+    /** @var array */
     protected $imageExtensions = array(
         'jpg',
         'jpeg',
