@@ -5,11 +5,14 @@ php:
 
 sudo: false
 
+install:
+  - composer require satooshi/php-coveralls:~0.6@stable
+
 before_script:
   - composer install --no-interaction --prefer-dist
 
 script:
   - php vendor/bin/phpunit --coverage-clover coverage.clover
 
-after_script:
- - php vendor/bin/coveralls -v
+after_success:
+  - php vendor/bin/coveralls -v
