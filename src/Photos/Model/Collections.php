@@ -7,12 +7,12 @@ class Collections
 {
 
     /**
+     * @param string $path
      * @return array
      * @author Cristian Quiroz <cris@qrz.io>
      */
-    public function getCollections()
+    public function getCollections($path)
     {
-        $path = 'collections';
         $results = scandir($path);
         $collectionModel = $this->getCollectionModel();
         $photosModel = $this->getPhotosModel();

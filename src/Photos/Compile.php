@@ -32,7 +32,7 @@ class Compile
             $this->getRootDir() . 'index.html'
         );
 
-        $collectionsRenderer->setCollections($this->getCollectionsModel()->getCollections());
+        $collectionsRenderer->setCollections($this->getCollectionsModel()->getCollections($this->getRootDir() . 'collections'));
 
         $collectionsRenderer->render();
     }
@@ -44,7 +44,7 @@ class Compile
     public function renderCollections()
     {
         $collectionsRenderer = new Renderer\Collection($this->getTemplatesDir() . 'collection.phtml', null);
-        $collections = $this->getCollectionsModel()->getCollections();
+        $collections = $this->getCollectionsModel()->getCollections($this->getRootDir() . 'collections');
 
         foreach ($collections as $pathToCollection => $collectionData) {
             $collectionsRenderer->setRenderDestination($this->getRootDir() . $collectionData['url-key'] . '.html');

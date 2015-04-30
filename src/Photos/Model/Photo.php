@@ -149,9 +149,13 @@ class Photo
      */
     public function resizeImage($pathToImage, $pathToSave, $width)
     {
-        $image = new ImageResize($pathToImage);
-        $image->resizeToWidth($width);
-        $image->save($pathToSave);
+        try {
+            $image = new ImageResize($pathToImage);
+            $image->resizeToWidth($width);
+            $image->save($pathToSave);
+        } catch (\Exception $exception) {
+            // Log something here, perhaps?
+        }
 
         return $this;
     }
