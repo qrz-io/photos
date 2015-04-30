@@ -31,5 +31,8 @@ class PhotoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('vfs://root/.thumb/photo.jpg', $data['Thumbnail']);
         $this->assertEquals('vfs://root/.img/photo.jpg', $data['BigImage']);
         $this->assertEquals('vfs://root/photo.jpg', $data['RealImage']);
+
+        $data = $photoModel->getData($this->dir->url() . '/photo2.jpg');
+        $this->assertEmpty($data);
     }
 }

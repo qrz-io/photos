@@ -27,13 +27,4 @@ class Collections extends RendererAbstract
     {
         return $this->collections;
     }
-
-    /**
-     * @return \Photos\Model\Collections
-     * @author Cristian Quiroz <cris@qrz.io>
-     */
-    public function getCollectionsModel()
-    {
-        return new \Photos\Model\Collections();
-    }
 }

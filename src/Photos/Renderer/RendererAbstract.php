@@ -10,7 +10,8 @@ class RendererAbstract
     protected $pathToDestination;
 
     /**
-     * @param $pathToTemplate
+     * @param string $pathToTemplate
+     * @param string $pathToTemplate
      * @throws \Exception
      */
     public function __construct($pathToTemplate, $pathToDestination)
