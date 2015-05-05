@@ -1,7 +1,6 @@
 <?php
+
 namespace Photos\Model;
-
-
 
 class Collections
 {
@@ -24,6 +23,7 @@ class Collections
             }
 
             $collectionsData[$path . '/' . $result] = $collectionModel->getData($path . '/' . $result);
+            $collectionsData[$path . '/' . $result]['path'] = 'collections/' . rtrim($result, '/') . '/';
             $collectionsData[$path . '/' . $result]['photos'] = $photosModel->getCollectionPhotos($path . '/' . $result);
         }
 

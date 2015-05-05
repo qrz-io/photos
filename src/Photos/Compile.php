@@ -47,7 +47,7 @@ class Compile
         $collections = $this->getCollectionsModel()->getCollections($this->getRootDir() . 'collections');
 
         foreach ($collections as $pathToCollection => $collectionData) {
-            $collectionsRenderer->setRenderDestination($this->getRootDir() . $collectionData['url-key'] . '.html');
+            $collectionsRenderer->setRenderDestination($this->getRootDir() . $collectionData['path'] . '/index.html');
             $collectionsRenderer->setCollectionData($collectionData);
             $collectionsRenderer->render();
         }

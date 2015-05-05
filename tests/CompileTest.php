@@ -34,8 +34,8 @@ img-thumb: "photo.jpg"',
         $compile->run();
 
         $this->assertTrue(file_exists($this->dir->url() . '/index.html'));
-        $this->assertTrue(file_exists($this->dir->url() . '/sample-collection.html'));
+        $this->assertTrue(file_exists($this->dir->url() . '/collections/sample/index.html'));
         $this->assertEquals('sample collection', file_get_contents($this->dir->url() . '/index.html'));
-        $this->assertEquals('sample collection', file_get_contents($this->dir->url() . '/sample-collection.html'));
+        $this->assertEquals('sample collection', file_get_contents($this->dir->url() . '/collections/sample/index.html'));
     }
 }

@@ -4,8 +4,8 @@ namespace Photos\Renderer;
 class Collections extends RendererAbstract
 {
 
+    /** @var array */
     protected $collections;
-
 
     /**
      * @param array $collections

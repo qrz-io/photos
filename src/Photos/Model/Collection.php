@@ -42,25 +42,7 @@ class Collection
             }
         }
 
-        if (array_key_exists('title', $data)) {
-            $data['url-key'] = $this->getUrlKey($data['title']);
-        }
-
         return $data;
-    }
-
-    /**
-     * @param $name
-     * @return mixed|string
-     * @author Cristian Quiroz <cris@qrz.io>
-     */
-    public function getUrlKey($name)
-    {
-        $name = preg_replace("/[^A-Za-z0-9 ]/", "", $name);
-        $name = str_replace(' ', '-', $name);
-        $name = strtolower($name);
-
-        return $name;
     }
 
     /**

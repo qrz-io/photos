@@ -46,7 +46,6 @@ class CollectionTest extends PHPUnit_Framework_TestCase
             'img-test1'   => '/path/to/collection/test1.jpg-thumb',
             'img-test2'   => '/path/to/collection/test2.jpg-thumb',
             'test3'       => 'test3.jpg',
-            'url-key'     => 'super-awesome-collection-name',
         );
 
         $actualData = $this->collection->getData('/path/to/collection');
@@ -62,19 +61,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
             'img-test1'   => '/path/to/collection/test1.jpg-thumb',
             'img-test2'   => '/path/to/collection/test2.jpg-thumb',
             'test3'       => 'test3.jpg',
-            'url-key'     => 'super-awesome-collection-name',
         );
 
         $actualData = $this->collection->getCollectionData('/path/to/collection/');
 
         $this->assertEquals($expectedData, $actualData);
-    }
-
-    public function testGetUrlKey()
-    {
-        $this->assertEquals('test-title', $this->collection->getUrlKey('Test title'));
-        $this->assertEquals('testtitle', $this->collection->getUrlKey('Test!!!!title'));
-        $this->assertEquals('test-title-', $this->collection->getUrlKey('Test&^% title!! '));
     }
 
     public function testGetPhotoModel()
