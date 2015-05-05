@@ -1,0 +1,6 @@
+## Define data to be passed to template.
+## Prefix images with 'img-' for auto thumb creation.
+## Anything defined here will be passed down to template, so go nuts.
+title: "Black + White"
+subtitle: "World without colour!"
+img-thumb: "flower.jpg"
