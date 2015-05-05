@@ -46,13 +46,13 @@ class PhotosTest extends PHPUnit_Framework_TestCase
 
         $expectedData = array(
             array (
-                "Thumbnail" => "vfs://root/.thumb/photo.jpg",
-                "BigImage" => "vfs://root/.img/photo.jpg",
-                "RealImage" => "vfs://root/photo.jpg",
+                "Thumbnail" => ".thumb/photo.jpg",
+                "BigImage" => ".img/photo.jpg",
+                "RealImage" => "photo.jpg",
             ),array (
-                "Thumbnail" => "vfs://root/.thumb/photo2.jpg",
-                "BigImage" => "vfs://root/.img/photo2.jpg",
-                "RealImage" => "vfs://root/photo2.jpg",
+                "Thumbnail" => ".thumb/photo2.jpg",
+                "BigImage" => ".img/photo2.jpg",
+                "RealImage" => "photo2.jpg",
             ),
         );
 

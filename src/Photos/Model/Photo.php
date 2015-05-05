@@ -82,7 +82,7 @@ class Photo
         $photoData = $this->getExifHeaders($pathToPhoto);
         $photoData['Thumbnail'] = $this->getPathToThumbnail($pathToPhoto);
         $photoData['BigImage'] = $this->getPathToBigImage($pathToPhoto);
-        $photoData['RealImage'] = $pathToPhoto;
+        $photoData['RealImage'] = pathinfo($pathToPhoto, PATHINFO_BASENAME);
 
         return $photoData;
     }
@@ -104,7 +104,7 @@ class Photo
      */
     public function getPathToThumbnail($pathToPhoto)
     {
-        return $this->getPathToResizedImage($pathToPhoto, '/.thumb/', 300);
+        return $this->getPathToResizedImage($pathToPhoto, '.thumb/', 300);
     }
 
     /**
@@ -114,7 +114,7 @@ class Photo
      */
     public function getPathToBigImage($pathToPhoto)
     {
-        return $this->getPathToResizedImage($pathToPhoto, '/.img/', 1200);
+        return $this->getPathToResizedImage($pathToPhoto, '.img/', 1200);
     }
 
     /**
@@ -126,8 +126,9 @@ class Photo
      */
     public function getPathToResizedImage($pathToPhoto, $temporaryFolderName, $width)
     {
-        $thumbDirectory = pathinfo($pathToPhoto, PATHINFO_DIRNAME) . $temporaryFolderName;
-        $pathToImg = $thumbDirectory . pathinfo($pathToPhoto, PATHINFO_BASENAME);
+        $thumbDirectory = pathinfo($pathToPhoto, PATHINFO_DIRNAME) . '/' . trim($temporaryFolderName, '/') . '/';
+        $imageName = pathinfo($pathToPhoto, PATHINFO_BASENAME);
+        $pathToImg = $thumbDirectory . $imageName;
 
         if (!file_exists($pathToImg)) {
             if (!is_dir($thumbDirectory)) {
@@ -137,7 +138,7 @@ class Photo
             $this->resizeImage($pathToPhoto, $pathToImg, $width);
         }
 
-        return $pathToImg;
+        return $temporaryFolderName . $imageName;
     }
 
     /**
