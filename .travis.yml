@@ -16,4 +16,4 @@ script:
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
-  - php vendor/bin/coveralls -v
+  - bash <(curl -s https://codecov.io/bash)
