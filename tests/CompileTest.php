@@ -30,7 +30,6 @@ img-thumb: "photo.jpg"',
 
     public function testRun()
     {
-        return;
         $compile = new \Photos\Compile($this->dir->url());
         $compile->run();
 
