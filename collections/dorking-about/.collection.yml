@@ -1,6 +1,0 @@
-## Define data to be passed to template.
-## Prefix images with 'img-' for auto thumb creation.
-## Anything defined here will be passed down to template, so go nuts.
-title: "Dorking about!"
-subtitle: "Street'ing photography'ing."
-img-thumb: "bird.jpg"
