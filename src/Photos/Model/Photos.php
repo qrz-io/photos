@@ -1,4 +1,5 @@
 <?php
+
 namespace Photos\Model;
 
 class Photos
@@ -18,6 +19,7 @@ class Photos
      */
     public function getCollectionPhotos($pathToCollection)
     {
+        $pathToCollection = $pathToCollection . "/original";
         $files = scandir($pathToCollection);
         $data = array();
         $photoModel = $this->getPhotoModel();
@@ -27,7 +29,9 @@ class Photos
                 continue;
             }
 
+//            echo "Processing {$pathToCollection}/{$file}... ";
             $data[] = $photoModel->getData($pathToCollection . '/' . $file);
+//            echo "done.".PHP_EOL;
         }
 
         return $data;

@@ -1,7 +1,7 @@
 <?php
 namespace Photos\Model;
 
-use \Eventviva\ImageResize;
+use \Gumlet\ImageResize;
 
 class Photo
 {
@@ -104,7 +104,7 @@ class Photo
      */
     public function getPathToThumbnail($pathToPhoto)
     {
-        return $this->getPathToResizedImage($pathToPhoto, '.thumb/', 300);
+        return $this->getPathToResizedImage($pathToPhoto, 'thumb/', 360*2, 90);
     }
 
     /**
@@ -114,7 +114,7 @@ class Photo
      */
     public function getPathToBigImage($pathToPhoto)
     {
-        return $this->getPathToResizedImage($pathToPhoto, '.img/', 1200);
+        return $this->getPathToResizedImage($pathToPhoto, 'img/', 1024*2, 90);
     }
 
     /**
@@ -124,18 +124,14 @@ class Photo
      * @return string
      * @author Cristian Quiroz <cris@qrz.io>
      */
-    public function getPathToResizedImage($pathToPhoto, $temporaryFolderName, $width)
+    public function getPathToResizedImage($pathToPhoto, $temporaryFolderName, $width, $quality = null)
     {
-        $thumbDirectory = pathinfo($pathToPhoto, PATHINFO_DIRNAME) . '/' . trim($temporaryFolderName, '/') . '/';
+        $thumbDirectory = pathinfo($pathToPhoto, PATHINFO_DIRNAME) . '/' . trim("../" . $temporaryFolderName, '/') . '/';
         $imageName = pathinfo($pathToPhoto, PATHINFO_BASENAME);
         $pathToImg = $thumbDirectory . $imageName;
 
         if (!file_exists($pathToImg)) {
-            if (!is_dir($thumbDirectory)) {
-                mkdir($thumbDirectory, 0777, true);
-            }
-
-            $this->resizeImage($pathToPhoto, $pathToImg, $width);
+            $this->resizeImage($pathToPhoto, $pathToImg, $width, $quality);
         }
 
         return $temporaryFolderName . $imageName;
@@ -148,12 +144,12 @@ class Photo
      * @return Photo
      * @author Cristian Quiroz <cris@qrz.io>
      */
-    public function resizeImage($pathToImage, $pathToSave, $width)
+    public function resizeImage($pathToImage, $pathToSave, $width, $quality = null)
     {
         try {
             $image = new ImageResize($pathToImage);
             $image->resizeToWidth($width);
-            $image->save($pathToSave);
+            $image->save($pathToSave, null, $quality);
         } catch (\Exception $exception) {
             // Log something here, perhaps?
         }

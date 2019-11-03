@@ -32,8 +32,18 @@ class Compile
             $this->getRootDir() . 'index.html'
         );
 
-        $collectionsRenderer->setCollections($this->getCollectionsModel()->getCollections($this->getRootDir() . 'collections'));
+        $collections = $this->getCollectionsModel()->getCollections($this->getRootDir() . 'collections');
+        usort($collections, function ($col1, $col2) {
+            if ($col1['sort-order'] == $col2['sort-order']) {
+                return 0;
+            } else if ($col1['sort-order'] > $col2['sort-order']) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
 
+        $collectionsRenderer->setCollections($collections);
         $collectionsRenderer->render();
     }
 
@@ -68,7 +78,7 @@ class Compile
      */
     public function getRootDir()
     {
-        return rtrim($this->rootDir . '/') . '/';
+        return rtrim($this->rootDir . '/') . '../photos-output/';
     }
 
     /**
